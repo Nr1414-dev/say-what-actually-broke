@@ -33,6 +33,9 @@ def validate_line(line):
         raise ValueError("entry must be a single line")
     if not line.strip():
         raise ValueError("entry must not be only whitespace")
+    for ch in line:
+        if ord(ch) < 0x20 and ch not in ("\t",):
+            raise ValueError("entry must not contain control characters")
     return line
 
 
